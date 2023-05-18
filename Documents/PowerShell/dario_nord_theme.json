@@ -1,0 +1,110 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette":{
+    "os": "#FFFFFF",
+    "text": "#D8DEE9",
+    "path": "#88C0D0",
+    "closer": "p:os",
+    "navy": "#335666",
+    "matcha": "#F6FACB",
+    "indigo": "#A3BE8C",
+    "blue":  "#8AADF4",
+    "error": "#E98B8B",
+    "lavender": "#B7BDF8",
+    "root_grey": "#9C9C9C",
+    "redhot": "#4C566A",
+    "grey": "#4C566A"
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "p:text",
+          "style":"plain",
+          "template": "{{.UserName}}@{{.HostName}}",
+          "type": "session"
+        },
+        {
+          "foreground": "p:root_grey",
+          "style": "plain",
+          "template": " \ue231",
+          "type": "root"
+        },
+        {
+          "foreground": "p:path",
+          "properties": {
+            "folder_separator_icon": "\\",
+            "home_icon": "~",
+            "mapped_locations": {
+              "C:\\Users": "\uf007",
+              "C:\\Windows": "\ue70f"
+            },
+            "style": "full",
+            "mixed_threshold": 6
+          },
+          "style": "diamond",
+          "template": " {{.Path}}",
+          "type": "path"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "foreground": "p:os",
+          "style": "plain",
+          "template": "{{.Icon}} ",
+          "type": "os"
+        },
+        {
+          "foreground": "p:indigo",
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "cherry_pick_icon": "\ue29b ",
+            "commit_icon": "\uf417 ",
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "merge_icon": "\ue727 ",
+            "no_commits_icon": "\uf594 ",
+            "rebase_icon": "\ue728 ",
+            "revert_icon": "\uf0e2 ",
+            "tag_icon": "\uf412 "
+          },
+          "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
+          "style": "plain",
+          "type": "git"
+        },
+        {
+          "foreground": "p:lavender",
+          "properties": {
+            "display_mode": "files",
+            "fetch_virtual_env": false
+          },
+          "style": "plain",
+          "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+          "type": "python"
+        }
+      ]
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "p:grey",
+          "style": "plain",
+          "template": ">",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "console_title_template": "{{.UserName}}@{{.HostName}} :: {{.Shell}}",
+  "final_space": true,
+  "version": 2
+}
